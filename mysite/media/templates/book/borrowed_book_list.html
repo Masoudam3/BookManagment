@@ -1,0 +1,48 @@
+{% extends 'sheared/site.html' %}
+{% load static %}
+
+{% block title %}
+{{super}} All Borrowed Book
+{% endblock %}
+
+{% block body %}
+<div class="container" style="margin-top: 70px;">
+    <div class="margin-top : 50px;"></div>
+    <h1 class="text-center">
+        All Borrowed Book
+    </h1>
+    <div class="margin-bottom: 100px;"></div>
+
+{% if borrowed_book_list %}
+    <div class="table-responsive">
+        <table class="table table-hover table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col"> Book</th>
+                    <th scope="col"> Borrower </th>
+                    <th scope="col"> Return Date </th>
+                </tr>
+            </thead>
+            <tbody> 
+                {% for book in borrowed_book_list %}
+                    <tr>
+                        <th scope="row"> {{ forloop.counter }}</th>
+                        <td> {{ book }}</td>
+                        <td>{{ book.borrower }}</a></td>
+                        <td>{{ book.due_back }}</a></td>
+                    </tr>
+                {% endfor %}    
+            </tbody>
+        </table>
+    </div>
+
+{% include 'partials/pagination.html' %}
+
+
+{% else %}
+    <h1>No book are found!</h1>
+{% endif %}
+</div>
+
+{% endblock %}

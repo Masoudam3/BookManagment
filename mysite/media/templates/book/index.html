@@ -1,0 +1,35 @@
+{% extends 'sheared/site.html' %}
+{% load static %}
+{% block title %}
+{{super}} Home
+{% endblock %}
+{% block body %}
+<link rel="stylesheet" href="{% static 'css/index.css' %}" />       
+    <div style="margin-top: 50px;"></div>
+
+    <div class="container-fliud">
+
+        <div class="row">
+            <div class="col-md-10" >
+                {% if user.is_authenticated %}
+                    Hi {{ user.username }}!
+                    <p>You are logged in</p>
+                {% else %}
+                    <p> You must <strong>Sign In</strong> to use different parts of the site</p>
+                {% endif %}
+                <h1>Local Libarary Home</h1>
+                <p><h5>Welcome to <em> Local Libarary</em> This is Django website for resumes</h5></p>
+                <hr/>
+                <h2>Overall and Dynamic content</h2>
+                <p><h5>The library has the fallowing record counts:</h5></p>
+                <ul class="list-unstyled">
+                    <li><p><strong>The number of all Books:</strong> {{ num_books }} </p></li>
+                    <li><p><strong>The number of all BooksInstance:</strong> {{ num_instances }}</p></li>
+                    <li><p><strong>The number of all BooksInstance that are avilable:</strong> {{ num_instances_available }}</p></li>
+                    <li><p><strong>The number of all Authors:</strong> {{ num_authors }}</p></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

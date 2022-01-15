@@ -1,0 +1,47 @@
+{% extends 'sheared/site.html' %}
+{% load static %}
+{% block title %}
+{{super}} Detail of {{book.title}}
+{% endblock %}
+{% block body %}
+<link rel="stylesheet" href="{% static 'css/book_detail.css' %}" />       
+    <div style="margin-top: 50px;"></div>
+
+    <div class="container-fliud">
+
+        <div class="row">
+            <div class="col-md-10" >
+                <h1>Detail Of Book</h1>
+                <p><h6>This section shows the detail of each books</h6></p>
+                <hr/>
+                <ul class="list-unstyled">
+                    <li><p><strong>Title:</strong> {{ book.title }} </p></li>
+                    <li><p><strong>Summery:</strong> {{ book.summery }}</p></li>
+                    <li><p><strong>Genre:</strong>{% for genre in book.genre.all %} {{ genre }} {% endfor %} </p></li>
+                    <li><p><strong>Author:</strong> {{ book.author }}</p></li>
+                    <li><p><strong>ISBN:</strong> {{ book.isbn }}</p></li>
+                    <li>
+                        <p>
+                            <strong>Instances:</strong>
+                            <hr/>
+                            <ul>
+                                {% for copy in book.bookinstance_set.all %}
+                                    {% if copy.status != 'a' %}
+                                        <li><p><h6><strong>Due_Back:  {{ copy.due_back }}</strong></h6></p></li>
+                                        <li><p><h6><strong>Imprint:  {{ copy.imprint }}</strong></h6></p></li>
+                                        <li><p><h6><strong>ID:  {{ copy.id }}</strong></p></h6></li>
+                                        <hr/>
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                        </p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+
+

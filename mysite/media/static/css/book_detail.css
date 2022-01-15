@@ -1,0 +1,13 @@
+h1 {
+    color: rgb(5, 138, 161);
+}
+p {
+    color: rgb(2, 73, 95);
+}
+
+div.col-md-10 {
+    margin: auto;
+    width: 75%;
+    padding: 10px;
+    color: rgb(100, 100, 100);
+}
